@@ -9,13 +9,12 @@
 import Cocoa
 import Foundation
 import Alamofire
-import Social
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
     
     var query = NSMetadataQuery()
-    var imageRemoteLink : String = "meep"
+    var imageRemoteLink : String = ""
 
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -54,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
             request.allHTTPHeaderFields = [
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": "CLIENT-ID dc346120c155525"
+                "Authorization": "CLIENT-ID 123456789"
             ]
             
             
@@ -76,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
             NSPasteboard.generalPasteboard().setString(imageRemoteLink, forType: NSStringPboardType)
             
             
-//            // Display notification
+            // Display notification
             // todo action to view the image
             let notification = NSUserNotification()
             notification.title = "Upload complete"
