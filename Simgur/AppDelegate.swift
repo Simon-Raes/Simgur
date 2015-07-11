@@ -14,8 +14,6 @@ import Alamofire
 class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
     
     var query = NSMetadataQuery()
-    var imageRemoteLink : String = ""
-
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
@@ -53,37 +51,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
             request.allHTTPHeaderFields = [
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": "CLIENT-ID 123456789"
+                "Authorization": "CLIENT-ID SET_API_KEY_HERE"
             ]
             
-            
             Alamofire.request(request)
-                .response { (request, response, data, error) in
-                    // todo handle error
-                    // println(error)
+                .responseJSON { (request, response, JSON, error) in
                     
-                }
-                .responseJSON { (_, _, JSON, _) in
-                    let resultJson = JSON?.valueForKey("data") as! NSDictionary
-                    self.imageRemoteLink = resultJson.valueForKey("link") as! String
-                    println(self.imageRemoteLink)
+                    var notificationTitle = "Upload failed"
+                    var notificationContent = "An error occurred"
+                    if error == nil{
+                        notificationTitle = "Upload complete"
+                        notificationContent = "URL copied to clipboard"
+                        
+                        let resultJson = JSON?.valueForKey("data") as! NSDictionary
+                        let imageRemoteLink = resultJson.valueForKey("link") as! String
+                        
+                        // Copy url to clipboard
+                        NSPasteboard.generalPasteboard().clearContents()
+                        NSPasteboard.generalPasteboard().setString(imageRemoteLink, forType: NSStringPboardType)
+                    }
+                    
+                    // Display notification
+                    // todo action to view the image
+                    let notification = NSUserNotification()
+                    notification.title = notificationTitle
+                    notification.informativeText = notificationContent
+                    notification.deliveryDate = NSDate(timeIntervalSinceNow: 0)
+                    NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(notification)
                     
             }
-            
-            // Copy url to clipboard
-            NSPasteboard.generalPasteboard().clearContents()
-            NSPasteboard.generalPasteboard().setString(imageRemoteLink, forType: NSStringPboardType)
-            
-            
-            // Display notification
-            // todo action to view the image
-            let notification = NSUserNotification()
-            notification.title = "Upload complete"
-            notification.informativeText = imageRemoteLink
-            notification.deliveryDate = NSDate(timeIntervalSinceNow: 0)
-            NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(notification)
-            
-            
         }
     }
 }
