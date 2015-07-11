@@ -33,16 +33,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
         if query.resultCount > 0
         {
             // Get the latest screenshot
-            var lastQueryResult = query.resultAtIndex(query.resultCount - 1) as! NSMetadataItem
+            let lastQueryResult = query.resultAtIndex(query.resultCount - 1) as! NSMetadataItem
             let imagePath = lastQueryResult.valueForAttribute("kMDItemPath") as! String
-            var imageUrl = NSURL(fileURLWithPath: imagePath)
-            var image = NSImage(byReferencingURL: imageUrl!)
+            let imageUrl = NSURL(fileURLWithPath: imagePath)
+            let image = NSImage(byReferencingURL: imageUrl!)
             
             // Convert the image to a base64 string
-            var data: NSData = image.TIFFRepresentation!
-            var bitmap: NSBitmapImageRep = NSBitmapImageRep(data: data)!
-            data = bitmap.representationUsingType(NSBitmapImageFileType.NSPNGFileType, properties: [:])!
-            var base64String : NSString = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.allZeros)
+            let imageTiff: NSData = image.TIFFRepresentation!
+            let imageBitmap: NSBitmapImageRep = NSBitmapImageRep(data: imageTiff)!
+            let imagePng = imageBitmap.representationUsingType(NSBitmapImageFileType.NSPNGFileType, properties: [:])!
+            let base64String : NSString = imagePng.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.allZeros)
             
             // Send it to Imgur and retrieve url
             let request = NSMutableURLRequest(URL: NSURL(string: "https://api.imgur.com/3/image")!)
