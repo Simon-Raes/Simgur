@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
         if let statusButton = statusItem.button {
             statusButton.image = NSImage(named: "Status")
 //            statusButton.alternateImage = NSImage(named: "StatusHighlighted")
+
         }
     }
     
