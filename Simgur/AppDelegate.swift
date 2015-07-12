@@ -15,6 +15,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
     
     var query = NSMetadataQuery()
     
+    let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
+
+    override init() {
+
+        super.init()
+
+        if let statusButton = statusItem.button {
+            statusButton.image = NSImage(named: "Status")
+            statusButton.alternateImage = NSImage(named: "StatusHighlighted")
+        }
+    }
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
         NSNotificationCenter.defaultCenter().addObserver(
