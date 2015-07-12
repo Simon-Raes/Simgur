@@ -15,6 +15,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
     
     var query = NSMetadataQuery()
     
+    let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
+    
+    override init() {
+        
+        super.init()
+        
+        if let statusButton = statusItem.button {
+            statusButton.image = NSImage(named: "Status")
+//            statusButton.alternateImage = NSImage(named: "StatusHighlighted")
+        }
+    }
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
         NSNotificationCenter.defaultCenter().addObserver(
@@ -26,6 +38,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
         query.delegate = self
         query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1", argumentArray: nil)
         query.startQuery()
+        
+        // Create menu items for menu bar button
+        let menu = NSMenu()
+        
+        menu.addItem(NSMenuItem(title: "Automatically upload", action: Selector("toggleAutoUpload:"), keyEquivalent: "a"))
+        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem(title: "Quit Simgur", action: Selector("terminate:"), keyEquivalent: "q"))
+        
+        statusItem.menu = menu
+    }
+    
+    func autoUpload(sender: AnyObject){
+        
+    }
+    
+    func terminate(sender: AnyObject){
+        
     }
     
     @objc func screenshotCaptured(notification: NSNotification){

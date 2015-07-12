@@ -12,6 +12,7 @@
 		E404C6E71B4F0603001BE1EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E404C6E61B4F0603001BE1EF /* Images.xcassets */; };
 		E404C6EA1B4F0603001BE1EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E404C6E81B4F0603001BE1EF /* Main.storyboard */; };
 		E404C6F61B4F0603001BE1EF /* SimgurTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E404C6F51B4F0603001BE1EF /* SimgurTests.swift */; };
+		E438AA271B52EC2F0088CAB4 /* Status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E438AA261B52EC2F0088CAB4 /* Status@2x.png */; };
 		E45C204B1B51637A00DC5162 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E45C204A1B51637A00DC5162 /* Podfile */; };
 		ECCFAF2626243E55EB75A86C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEDC61E7E8AC90548B2B8716 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		E404C6EF1B4F0603001BE1EF /* SimgurTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimgurTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E404C6F41B4F0603001BE1EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E404C6F51B4F0603001BE1EF /* SimgurTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimgurTests.swift; sourceTree = "<group>"; };
+		E438AA261B52EC2F0088CAB4 /* Status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Status@2x.png"; sourceTree = "<group>"; };
 		E45C204A1B51637A00DC5162 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 		E404C6DF1B4F0603001BE1EF /* Simgur */ = {
 			isa = PBXGroup;
 			children = (
+				E438AA261B52EC2F0088CAB4 /* Status@2x.png */,
 				E404C6E21B4F0603001BE1EF /* AppDelegate.swift */,
 				E404C6E41B4F0603001BE1EF /* ViewController.swift */,
 				E404C6E61B4F0603001BE1EF /* Images.xcassets */,
@@ -221,6 +224,7 @@
 			files = (
 				E45C204B1B51637A00DC5162 /* Podfile in Resources */,
 				E404C6E71B4F0603001BE1EF /* Images.xcassets in Resources */,
+				E438AA271B52EC2F0088CAB4 /* Status@2x.png in Resources */,
 				E404C6EA1B4F0603001BE1EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
