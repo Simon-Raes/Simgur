@@ -43,7 +43,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
         // Create menu items for menu bar button
         let menu = NSMenu()
         
+        //todo implement
         menu.addItem(NSMenuItem(title: "Automatically upload", action: Selector("toggleAutoUpload:"), keyEquivalent: "a"))
+        // todo action to toggle auto delete of local image
+        // todo action to open window with history of uploads + their imgur link + delete link if possible
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(NSMenuItem(title: "Quit Simgur", action: Selector("terminate:"), keyEquivalent: "q"))
         
@@ -94,6 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
                         notificationContent = "URL copied to clipboard"
                         
                         let resultJson = JSON?.valueForKey("data") as! NSDictionary
+                        // todo handle crash when wrong api key is set
                         let imageRemoteLink = resultJson.valueForKey("link") as! String
                         
                         // Copy url to clipboard
@@ -103,10 +107,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
                     
                     // Display notification
                     // todo action to view the image
+                    // todo action to copy to clip board instead of automatically doing it
                     let notification = NSUserNotification()
                     notification.title = notificationTitle
                     notification.informativeText = notificationContent
-                    notification.deliveryDate = NSDate(timeIntervalSinceNow: 0)
+//                    notification.deliveryDate = NSDate(timeIntervalSinceNow: 0)
                     NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(notification)
                     
             }

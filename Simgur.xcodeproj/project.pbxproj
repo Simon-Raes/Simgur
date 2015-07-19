@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E401E3701B5BECDB00639CA9 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E401E36F1B5BECDB00639CA9 /* Keys.plist */; };
 		E404C6E31B4F0603001BE1EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E404C6E21B4F0603001BE1EF /* AppDelegate.swift */; };
 		E404C6E51B4F0603001BE1EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E404C6E41B4F0603001BE1EF /* ViewController.swift */; };
 		E404C6E71B4F0603001BE1EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E404C6E61B4F0603001BE1EF /* Images.xcassets */; };
@@ -30,6 +31,7 @@
 		51718194F00A4B1BBD4FD28E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A092048EB0A266E9CA524A8E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BEDC61E7E8AC90548B2B8716 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E401E36F1B5BECDB00639CA9 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		E404C6DD1B4F0603001BE1EF /* Simgur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simgur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E404C6E11B4F0603001BE1EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E404C6E21B4F0603001BE1EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				E404C6E41B4F0603001BE1EF /* ViewController.swift */,
 				E404C6E61B4F0603001BE1EF /* Images.xcassets */,
 				E404C6E01B4F0603001BE1EF /* Supporting Files */,
+				E401E36F1B5BECDB00639CA9 /* Keys.plist */,
 			);
 			path = Simgur;
 			sourceTree = "<group>";
@@ -114,8 +117,6 @@
 		E404C6E01B4F0603001BE1EF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E43A91F41B52ABFC00ACAA42 /* Status@2x.png */,
-				E43A91F51B52ABFC00ACAA42 /* StatusHighlighted@2x.png */,
 				E404C6E11B4F0603001BE1EF /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -221,10 +222,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E401E3701B5BECDB00639CA9 /* Keys.plist in Resources */,
 				E45C204B1B51637A00DC5162 /* Podfile in Resources */,
 				E404C6E71B4F0603001BE1EF /* Images.xcassets in Resources */,
 				E438AA271B52EC2F0088CAB4 /* Status@2x.png in Resources */,
-				E404C6EA1B4F0603001BE1EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

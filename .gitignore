@@ -28,3 +28,6 @@ Pods
 
 # Gradle
 .gradle
+
+# Credentials
+Keys.plist
