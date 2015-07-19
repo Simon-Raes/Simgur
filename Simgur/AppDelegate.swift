@@ -14,16 +14,33 @@ import Alamofire
 class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
     
     var query = NSMetadataQuery()
+    var client_id : String
     
     let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
-
+    
     override init() {
-
+        
+        
+        var myDict: NSDictionary?
+        if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
+            myDict = NSDictionary(contentsOfFile: path)
+        }
+        if let dict = myDict {
+            // Use your dict here
+            client_id = "CLIENT-ID " + (dict.objectForKey("Imgur") as! String)
+        }
+        else
+        {
+            client_id = "Error"
+        }
+        
         super.init()
 
+        
         if let statusButton = statusItem.button {
             statusButton.image = NSImage(named: "Status")
-            statusButton.alternateImage = NSImage(named: "StatusHighlighted")
+//            statusButton.alternateImage = NSImage(named: "StatusHighlighted")
+
         }
     }
     
@@ -38,6 +55,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
         query.delegate = self
         query.predicate = NSPredicate(format: "kMDItemIsScreenCapture = 1", argumentArray: nil)
         query.startQuery()
+        
+        // Create menu items for menu bar button
+        let menu = NSMenu()
+        
+        //todo implement
+        menu.addItem(NSMenuItem(title: "Automatically upload", action: Selector("toggleAutoUpload:"), keyEquivalent: "a"))
+        // todo action to toggle auto delete of local image
+        // todo action to open window with history of uploads + their imgur link + delete link if possible
+        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem(title: "Quit Simgur", action: Selector("terminate:"), keyEquivalent: "q"))
+        
+        statusItem.menu = menu
+    }
+    
+    func autoUpload(sender: AnyObject){
+        
+    }
+    
+    func terminate(sender: AnyObject){
+        
     }
     
     @objc func screenshotCaptured(notification: NSNotification){
@@ -63,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
             request.allHTTPHeaderFields = [
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": "CLIENT-ID SET_API_KEY_HERE"
+                "Authorization": client_id
             ]
             
             Alamofire.request(request)
@@ -76,6 +113,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
                         notificationContent = "URL copied to clipboard"
                         
                         let resultJson = JSON?.valueForKey("data") as! NSDictionary
+                        // todo handle crash when wrong api key is set
                         let imageRemoteLink = resultJson.valueForKey("link") as! String
                         
                         // Copy url to clipboard
@@ -85,10 +123,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
                     
                     // Display notification
                     // todo action to view the image
+                    // todo action to copy to clip board instead of automatically doing it
                     let notification = NSUserNotification()
                     notification.title = notificationTitle
                     notification.informativeText = notificationContent
-                    notification.deliveryDate = NSDate(timeIntervalSinceNow: 0)
+//                    notification.deliveryDate = NSDate(timeIntervalSinceNow: 0)
                     NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(notification)
                     
             }
