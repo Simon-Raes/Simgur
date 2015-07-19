@@ -14,12 +14,28 @@ import Alamofire
 class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
     
     var query = NSMetadataQuery()
+    var client_id : String
     
     let statusItem: NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
     
     override init() {
         
+        
+        var myDict: NSDictionary?
+        if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
+            myDict = NSDictionary(contentsOfFile: path)
+        }
+        if let dict = myDict {
+            // Use your dict here
+            client_id = "CLIENT-ID " + (dict.objectForKey("Imgur") as! String)
+        }
+        else
+        {
+            client_id = "Error"
+        }
+        
         super.init()
+
         
         if let statusButton = statusItem.button {
             statusButton.image = NSImage(named: "Status")
@@ -84,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMetadataQueryDelegate {
             request.allHTTPHeaderFields = [
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": "CLIENT-ID SET_API_KEY_HERE"
+                "Authorization": client_id
             ]
             
             Alamofire.request(request)
